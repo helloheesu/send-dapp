@@ -39,7 +39,7 @@ export default async function handler(
     signingClient = await SigningStargateClient.connectWithSigner(rpc, signer);
   } catch (error) {
     res
-      .status(500)
+      .status(400)
       .json({ error: "Something went wrong on signing. Check your mnemonic." });
     return;
   }
@@ -59,7 +59,7 @@ export default async function handler(
     );
   } catch (error) {
     console.error(error);
-    res.status(500).json({
+    res.status(400).json({
       error:
         "Something went wrong on sending. Check your balance or recipient's address.",
     });

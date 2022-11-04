@@ -4,6 +4,12 @@ import { Modal } from "../Portal";
 import Spinner from "../Spinner";
 import styles from "./SendButton.module.css";
 
+type SendingState = "idle" | "sending" | "sent" | "error";
+interface SendResult {
+  txHash: string;
+  gasUsed: number;
+}
+
 const SendButton = () => {
   const mnemonicWords = useSendStore((state) => state.mnemonicWords);
   const recipientAddress = useSendStore((state) => state.recipientAddress);
@@ -13,9 +19,11 @@ const SendButton = () => {
     return mnemonicWords.join(" ");
   }, [mnemonicWords]);
 
-  const [isSending, setIsSending] = useState(true);
+  const [sendingState, setSendingState] = useState<SendingState>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [sendResult, setSendResult] = useState<SendResult>();
 
-  const sendTokens = async () => {
+  const sendTokens = async (): Promise<SendResult> => {
     const response = await fetch("/api/send", {
       method: "POST",
       headers: {
@@ -29,25 +37,46 @@ const SendButton = () => {
       }),
     });
     const data = await response.json();
-    console.log(data);
+
+    if (response.status !== 200) {
+      throw new Error(data.error);
+    }
+
+    return {
+      txHash: data.transactionHash,
+      gasUsed: data.gasUsed,
+    };
   };
 
-  const onClick = async () => {
-    setIsSending(true);
-    await sendTokens();
-    setIsSending(false);
+  const onClickSendButton = async () => {
+    setSendingState("sending");
+    try {
+      const sendResult = await sendTokens();
+      setSendResult(sendResult);
+    } catch (error) {
+      setSendingState("error");
+      setErrorMessage((error as Error).message);
+      return;
+    }
+    setSendingState("sent");
+  };
+
+  const onClickCloseButton = () => {
+    setSendingState("idle");
+    setErrorMessage("");
+    setSendResult(undefined);
   };
 
   return (
     <>
       <button
         className={styles.buttonContainer}
-        onClick={onClick}
-        disabled={isSending}
+        onClick={onClickSendButton}
+        disabled={sendingState !== "idle"}
       >
-        {isSending ? "Sending..." : "Send"}
+        {sendingState === "idle" ? "Send" : "Sending..."}
       </button>
-      {isSending && (
+      {sendingState === "sending" && (
         <Modal>
           <h2>Sending Tokens...</h2>
           <p>
@@ -60,6 +89,21 @@ const SendButton = () => {
             amount: <input value={token.amount} disabled /> {token.denom}
           </p>
           <Spinner />
+        </Modal>
+      )}
+      {sendingState === "sent" && sendResult && (
+        <Modal>
+          <h2>Success!</h2>
+          <p>txHash: {sendResult.txHash}</p>
+          <p>gasUsed: {sendResult.gasUsed}</p>
+          <button onClick={onClickCloseButton}>Close</button>
+        </Modal>
+      )}
+      {sendingState === "error" && (
+        <Modal>
+          <h2>Error!</h2>
+          <p>{errorMessage}</p>
+          <button onClick={onClickCloseButton}>Close</button>
         </Modal>
       )}
     </>
