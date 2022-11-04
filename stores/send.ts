@@ -2,8 +2,8 @@ import { StateCreator } from "zustand";
 import type { SenderInputSlice } from "./senderInput";
 
 export interface SendSlice {
-  receiverAddress: string;
-  setReceiverAddress: (address: string) => void;
+  recipientAddress: string;
+  setRecipientAddress: (address: string) => void;
 
   token: {
     denom: string;
@@ -18,8 +18,8 @@ const createSendSlice: StateCreator<
   [],
   SendSlice
 > = (set, get, store) => ({
-  receiverAddress: "",
-  setReceiverAddress: (address: string) => set({ receiverAddress: address }),
+  recipientAddress: "",
+  setRecipientAddress: (address: string) => set({ recipientAddress: address }),
 
   token: {
     denom: "uatom",

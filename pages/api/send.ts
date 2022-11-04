@@ -16,7 +16,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { senderMnemonic, receiverAddress, tokenDenom, tokenAmount } = req.body;
+  const { senderMnemonic, recipientAddress, tokenDenom, tokenAmount } =
+    req.body;
 
   let client: StargateClient;
   try {
@@ -49,7 +50,7 @@ export default async function handler(
 
     result = await signingClient.sendTokens(
       senderAddress,
-      receiverAddress,
+      recipientAddress,
       [{ denom: tokenDenom, amount: tokenAmount.toString() }],
       {
         amount: [{ denom: "uatom", amount: "1000" }],

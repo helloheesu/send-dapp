@@ -3,7 +3,7 @@ import styles from "./SendButton.module.css";
 
 const SendButton = () => {
   const mnemonicWords = useSendStore((state) => state.mnemonicWords);
-  const receiverAddress = useSendStore((state) => state.receiverAddress);
+  const recipientAddress = useSendStore((state) => state.recipientAddress);
   const token = useSendStore((state) => state.token);
 
   const onClick = async () => {
@@ -14,7 +14,7 @@ const SendButton = () => {
       },
       body: JSON.stringify({
         senderMnemonic: mnemonicWords.join(" "),
-        receiverAddress,
+        recipientAddress,
         tokenAmount: token.amount,
         tokenDenom: token.denom,
       }),
