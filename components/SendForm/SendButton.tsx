@@ -13,7 +13,7 @@ const SendButton = () => {
     return mnemonicWords.join(" ");
   }, [mnemonicWords]);
 
-  const [isSending, setIsSending] = useState(false);
+  const [isSending, setIsSending] = useState(true);
 
   const sendTokens = async () => {
     const response = await fetch("/api/send", {
@@ -49,7 +49,16 @@ const SendButton = () => {
       </button>
       {isSending && (
         <Modal>
-          Sending..!
+          <h2>Sending Tokens...</h2>
+          <p>
+            from: <input value={senderMnemonic} disabled />
+          </p>
+          <p>
+            to: <input value={recipientAddress} disabled />
+          </p>
+          <p>
+            amount: <input value={token.amount} disabled /> {token.denom}
+          </p>
           <Spinner />
         </Modal>
       )}
