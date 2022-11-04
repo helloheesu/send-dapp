@@ -2,7 +2,7 @@ import { fillArray } from "utils";
 import { StateCreator } from "zustand";
 import type { SendSlice } from "./send";
 
-const mnemonicLengths = [12, 24] as const;
+export const mnemonicLengths = [12, 24] as const;
 const initialMnemonicLength = mnemonicLengths[0];
 export type MnemonicLength = typeof mnemonicLengths[number];
 
