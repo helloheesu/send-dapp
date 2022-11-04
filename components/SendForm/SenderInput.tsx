@@ -6,6 +6,7 @@ import {
 } from "stores/senderInput";
 import styles from "./SenderInput.module.css";
 import inputStyles from "./Input.module.css";
+import { useRef } from "react";
 
 const inputId = "sender-mnemonic";
 const lengthId = "mnemonic-length";
@@ -13,14 +14,14 @@ const lengthId = "mnemonic-length";
 const SenderInput = () => {
   const mnemonicWords = useSendStore((state) => state.mnemonicWords);
   const setMnemonicWord = useSendStore((state) => state.setMnemonicWord);
-
   const mnemonicLength = useSendStore((state) => state.mnemonicLength);
   const setMnemonicLength = useSendStore((state) => state.setMnemonicLength);
-
   const focusedInputIndex = useSendStore((state) => state.focusedInputIndex);
   const setFocusedInputIndex = useSendStore(
     (state) => state.setFocusedInputIndex
   );
+
+  const inputsContainerRef = useRef<HTMLDivElement>(null);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const words = event.target.value.split(/\s/);
@@ -33,6 +34,20 @@ const SenderInput = () => {
     words.forEach((word, index) => {
       setMnemonicWord(word, index + focusedInputIndex);
     });
+
+    const lastInputIndex = Math.min(
+      focusedInputIndex + words.length - 1,
+      mnemonicLength - 1
+    );
+    const lastInput = inputsContainerRef.current?.childNodes[
+      lastInputIndex
+    ] as HTMLInputElement;
+    if (!lastInput) {
+      return;
+    }
+
+    lastInput.focus();
+    lastInput.setSelectionRange(lastInput.value.length, lastInput.value.length);
   };
 
   return (
@@ -56,7 +71,7 @@ const SenderInput = () => {
         </div>
       </div>
 
-      <div className={styles.words}>
+      <div className={styles.words} ref={inputsContainerRef}>
         {mnemonicWords.map((word, index) => (
           <input
             key={index}
