@@ -1,5 +1,6 @@
 import { useSendStore } from "@/stores";
 import { useMemo, useState } from "react";
+import { Modal } from "../Portal";
 import styles from "./SendButton.module.css";
 
 const SendButton = () => {
@@ -37,13 +38,16 @@ const SendButton = () => {
   };
 
   return (
-    <button
-      className={styles.buttonContainer}
-      onClick={onClick}
-      disabled={isSending}
-    >
-      {isSending ? "Sending..." : "Send"}
-    </button>
+    <>
+      <button
+        className={styles.buttonContainer}
+        onClick={onClick}
+        disabled={isSending}
+      >
+        {isSending ? "Sending..." : "Send"}
+      </button>
+      {isSending && <Modal>Sending..!</Modal>}
+    </>
   );
 };
 
