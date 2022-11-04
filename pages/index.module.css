@@ -1,0 +1,17 @@
+.fullContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 60rem;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+    background-color: cornflowerblue;
+    border-radius: 0.5rem;
+}

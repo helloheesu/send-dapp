@@ -1,21 +1,11 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    max-width: 40rem;
-    border: 1px solid black;
-    padding: 1rem;
-    position: relative;
-    gap: 1rem;
-}
-
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .words {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }

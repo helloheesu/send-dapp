@@ -1,5 +1,6 @@
 import { useSendStore } from "@/stores";
 import shallow from "zustand/shallow";
+import inputStyles from "./Input.module.css";
 
 const inputId = "receiver-address";
 
@@ -16,7 +17,7 @@ const ReceiverInput = () => {
     setReceiverAddress(event.target.value);
 
   return (
-    <div>
+    <div className={inputStyles.container}>
       <label htmlFor={inputId}>Receiver Address</label>
       <input id={inputId} value={receiverAddress} onChange={onChange} />
     </div>

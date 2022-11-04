@@ -1,0 +1,17 @@
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: none;
+
+  background-color: darkblue;
+  color: white;
+
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 255, 0.5);
+}
+
+.buttonContainer:hover {
+  background-color: blue;
+}

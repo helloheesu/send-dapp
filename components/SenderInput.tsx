@@ -1,6 +1,7 @@
 import { useSendStore } from "@/stores";
 import { MnemonicLength, mnemonicLengths } from "stores/senderInput";
 import styles from "./SenderInput.module.css";
+import inputStyles from "./Input.module.css";
 
 const inputId = "sender-mnemonic";
 const lengthId = "mnemonic-length";
@@ -25,7 +26,7 @@ const SenderInput = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={inputStyles.container}>
       <div className={styles.header}>
         <label htmlFor={inputId}>Sender Mnemonic</label>
         <div className={styles.length}>

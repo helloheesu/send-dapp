@@ -1,0 +1,18 @@
+.item {
+  background-color: azure;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 255, 0.5);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+  gap: 1rem;
+
+  background-color: azure;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 255, 0.5);
+}
