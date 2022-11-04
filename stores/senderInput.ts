@@ -1,6 +1,6 @@
 import { fillArray } from "utils";
 import { StateCreator } from "zustand";
-import type { SendSlice } from "./send";
+import type { InputSlice } from "./input";
 
 export const mnemonicLengths = [12, 24] as const;
 const initialMnemonicLength = mnemonicLengths[0];
@@ -25,7 +25,7 @@ export interface SenderInputSlice {
 }
 
 const createSenderInputSlice: StateCreator<
-  SenderInputSlice & SendSlice,
+  SenderInputSlice & InputSlice,
   [],
   [],
   SenderInputSlice

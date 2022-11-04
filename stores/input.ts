@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand";
 import type { SenderInputSlice } from "./senderInput";
 
-export interface SendSlice {
+export interface InputSlice {
   recipientAddress: string;
   setRecipientAddress: (address: string) => void;
 
@@ -13,11 +13,11 @@ export interface SendSlice {
 }
 
 const createSendSlice: StateCreator<
-  SenderInputSlice & SendSlice,
+  SenderInputSlice & InputSlice,
   [],
   [],
-  SendSlice
-> = (set, get, store) => ({
+  InputSlice
+> = (set) => ({
   recipientAddress: "",
   setRecipientAddress: (address: string) => set({ recipientAddress: address }),
 
