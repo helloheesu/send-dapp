@@ -12,7 +12,7 @@ interface SendStore {
   setToken: (token: { denom: string; amount: number }) => void;
 }
 
-export const useSendStore = create<SendStore>((set) => ({
+export const useSendStore = create<SendStore>()((set) => ({
   senderMnemonic: "",
   receiverAddress: "",
   token: {
