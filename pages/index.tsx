@@ -1,7 +1,9 @@
-import RecipientInput from "@/components/RecipientInput";
-import SendButton from "@/components/SendButton";
-import SenderInput from "@/components/SenderInput";
-import TokenInput from "@/components/TokenInput";
+import {
+  RecipientInput,
+  SendButton,
+  SenderInput,
+  TokenInput,
+} from "@/components/SendForm";
 import styles from "./index.module.css";
 
 export default function Home() {
