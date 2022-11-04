@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 구현 기능
 
-## Getting Started
+- 요구사항에 있는, 기본적인 입력과 토큰 전송 기능
+- 니모닉을 일괄 붙여넣기도 가능
+- 입력값이 비었을 경우 전송 버튼 비활성화
+- 전송 중에는 모달창이 뜨며, 전송 버튼 비활성화
+- 전송 성공/실패시 관련 내용 모달창
+- 성공/실패 모달창 닫기 버튼 클릭시 입력 내용 초기화
 
-First, run the development server:
+# Screenshots
 
-```bash
-npm run dev
-# or
-yarn dev
+<img width="652" alt="image" src="https://user-images.githubusercontent.com/5011544/200006110-f69ecdbf-c129-41ea-bd16-f568bb5e111b.png">
+<img width="507" alt="image" src="https://user-images.githubusercontent.com/5011544/200006137-de89a971-5645-4f30-b498-9060898c4da9.png">
+<img width="686" alt="image" src="https://user-images.githubusercontent.com/5011544/200006158-d5370999-a9a3-4cc9-998b-5a6407f9327e.png">
+
+# 구동 방법
+
+1. 저장소 클론
+2. .env.local 파일 생성
+
+```
+RPC=http://gaia-node-...보내주신 주소
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. 터미널에서 저장소 디렉토리 가서,
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+$ npm i
+$ npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. http://localhost:3000/ 접속
