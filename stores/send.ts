@@ -22,7 +22,7 @@ const createSendSlice: StateCreator<
   setReceiverAddress: (address: string) => set({ receiverAddress: address }),
 
   token: {
-    denom: "",
+    denom: "uatom",
     amount: 0,
   },
   setToken: (token: { denom: string; amount: number }) => set({ token: token }),
