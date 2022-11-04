@@ -38,7 +38,9 @@ const SenderInput = () => {
             }}
           >
             {mnemonicLengths.map((length) => (
-              <option value={length}>{length} words</option>
+              <option value={length} key={length}>
+                {length} words
+              </option>
             ))}
           </select>
         </div>
