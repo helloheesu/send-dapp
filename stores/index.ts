@@ -1,8 +1,8 @@
 import create from "zustand";
-import createInputSlice, { InputSlice } from "./input";
-import createSenderInputSlice, { SenderInputSlice } from "./senderInput";
+import createInputSlice from "./input";
+import createSenderInputSlice from "./senderInput";
 
-export const useSendStore = create<InputSlice & SenderInputSlice>()((...a) => ({
+export const useSendStore = create<Stores.Store>()((...a) => ({
   ...createInputSlice(...a),
   ...createSenderInputSlice(...a),
 }));

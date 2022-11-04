@@ -1,6 +1,5 @@
 import { fillArray } from "utils";
 import { StateCreator } from "zustand";
-import type { InputSlice } from "./input";
 
 export const mnemonicLengths = [12, 24] as const;
 const initialMnemonicLength = mnemonicLengths[0];
@@ -13,22 +12,11 @@ export const getNextMnemonicLength = (length: number) => {
   return 24;
 };
 
-export interface SenderInputSlice {
-  mnemonicLength: MnemonicLength;
-  setMnemonicLength: (length: MnemonicLength) => void;
-
-  mnemonicWords: string[];
-  setMnemonicWord: (word: string, index: number) => void;
-
-  focusedInputIndex: number;
-  setFocusedInputIndex: (index: number) => void;
-}
-
 const createSenderInputSlice: StateCreator<
-  SenderInputSlice & InputSlice,
+  Stores.Store,
   [],
   [],
-  SenderInputSlice
+  Stores.SenderInputSlice
 > = (set, get) => ({
   mnemonicLength: initialMnemonicLength,
   setMnemonicLength: (length) => {
