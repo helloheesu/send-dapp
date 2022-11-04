@@ -1,5 +1,9 @@
 import { useSendStore } from "@/stores";
-import { MnemonicLength, mnemonicLengths } from "stores/senderInput";
+import {
+  getNextMnemonicLength,
+  MnemonicLength,
+  mnemonicLengths,
+} from "stores/senderInput";
 import styles from "./SenderInput.module.css";
 import inputStyles from "./Input.module.css";
 
@@ -20,6 +24,12 @@ const SenderInput = () => {
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const words = event.target.value.split(/\s/);
+
+    if (words.length > mnemonicLength) {
+      const nextLength = getNextMnemonicLength(words.length);
+      setMnemonicLength(nextLength);
+    }
+
     words.forEach((word, index) => {
       setMnemonicWord(word, index + focusedInputIndex);
     });
@@ -60,7 +70,6 @@ const SenderInput = () => {
           />
         ))}
       </div>
-      <div>{mnemonicWords.join(" ")}</div>
     </div>
   );
 };

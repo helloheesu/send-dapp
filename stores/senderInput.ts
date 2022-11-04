@@ -6,6 +6,13 @@ export const mnemonicLengths = [12, 24] as const;
 const initialMnemonicLength = mnemonicLengths[0];
 export type MnemonicLength = typeof mnemonicLengths[number];
 
+export const getNextMnemonicLength = (length: number) => {
+  if (length <= 12) {
+    return 12;
+  }
+  return 24;
+};
+
 export interface SenderInputSlice {
   mnemonicLength: MnemonicLength;
   setMnemonicLength: (length: MnemonicLength) => void;
