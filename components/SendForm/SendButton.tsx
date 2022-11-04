@@ -1,6 +1,7 @@
 import { useSendStore } from "@/stores";
 import { useMemo, useState } from "react";
 import { Modal } from "../Portal";
+import Spinner from "../Spinner";
 import styles from "./SendButton.module.css";
 
 const SendButton = () => {
@@ -46,7 +47,12 @@ const SendButton = () => {
       >
         {isSending ? "Sending..." : "Send"}
       </button>
-      {isSending && <Modal>Sending..!</Modal>}
+      {isSending && (
+        <Modal>
+          Sending..!
+          <Spinner />
+        </Modal>
+      )}
     </>
   );
 };
