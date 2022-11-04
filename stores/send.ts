@@ -1,9 +1,7 @@
-import create from "zustand";
+import { StateCreator } from "zustand";
+import type { SenderInputSlice } from "./senderInput";
 
-interface SendStore {
-  senderMnemonic: string;
-  setSenderMnemonic: (mnemonic: string) => void;
-
+export interface SendSlice {
   receiverAddress: string;
   setReceiverAddress: (address: string) => void;
 
@@ -14,10 +12,12 @@ interface SendStore {
   setToken: (token: { denom: string; amount: number }) => void;
 }
 
-export const useSendStore = create<SendStore>()((set) => ({
-  senderMnemonic: "",
-  setSenderMnemonic: (mnemonic: string) => set({ senderMnemonic: mnemonic }),
-
+const createSendSlice: StateCreator<
+  SenderInputSlice & SendSlice,
+  [],
+  [],
+  SendSlice
+> = (set, get, store) => ({
   receiverAddress: "",
   setReceiverAddress: (address: string) => set({ receiverAddress: address }),
 
@@ -26,4 +26,6 @@ export const useSendStore = create<SendStore>()((set) => ({
     amount: 0,
   },
   setToken: (token: { denom: string; amount: number }) => set({ token: token }),
-}));
+});
+
+export default createSendSlice;
