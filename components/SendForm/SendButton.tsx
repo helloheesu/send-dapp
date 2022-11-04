@@ -14,6 +14,7 @@ const SendButton = () => {
   const mnemonicWords = useSendStore((state) => state.mnemonicWords);
   const recipientAddress = useSendStore((state) => state.recipientAddress);
   const token = useSendStore((state) => state.token);
+  const resetSendInputs = useSendStore((state) => state.resetSendInputs);
 
   const senderMnemonic = useMemo(() => {
     return mnemonicWords.join(" ");
@@ -65,6 +66,8 @@ const SendButton = () => {
     setSendingState("idle");
     setErrorMessage("");
     setSendResult(undefined);
+
+    resetSendInputs();
   };
 
   return (

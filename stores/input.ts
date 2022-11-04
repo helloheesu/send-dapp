@@ -11,6 +11,9 @@ const createSendSlice: StateCreator<Stores.Store, [], [], Stores.InputSlice> = (
     amount: 0,
   },
   setToken: (token: { denom: string; amount: number }) => set({ token: token }),
+
+  resetSendInputs: () =>
+    set({ recipientAddress: "", token: { denom: "uatom", amount: 0 } }),
 });
 
 export default createSendSlice;

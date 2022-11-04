@@ -10,6 +10,8 @@ namespace Stores {
       amount: number;
     };
     setToken: (token: { denom: string; amount: number }) => void;
+
+    resetSendInputs: () => void;
   }
 
   interface SenderInputSlice {
