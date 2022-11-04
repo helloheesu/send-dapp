@@ -75,7 +75,12 @@ const SendButton = () => {
       <button
         className={styles.buttonContainer}
         onClick={onClickSendButton}
-        disabled={sendingState !== "idle"}
+        disabled={
+          sendingState !== "idle" ||
+          !token.amount ||
+          !recipientAddress ||
+          !senderMnemonic
+        }
       >
         {sendingState === "idle" ? "Send" : "Sending..."}
       </button>
